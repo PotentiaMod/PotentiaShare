@@ -67,6 +67,19 @@ CREATE TABLE IF NOT EXISTS assets (
   data BLOB NOT NULL
 ) STRICT;`);
 
+/*
+  BEGIN TRANSACTION;
+  CREATE TABLE complete_project_assets_new (
+    project_id TEXT NOT NULL REFERENCES projects(project_id) ON DELETE CASCADE,
+    asset_sha256 TEXT NOT NULL REFERENCES assets(asset_sha256) ON DELETE CASCADE,
+    asset_md5ext TEXT NOT NULL,
+    PRIMARY KEY(project_id, asset_md5ext)
+  ) STRICT;
+  INSERT INTO complete_project_assets_new SELECT project_id, asset_sha256, asset_md5ext FROM complete_project_assets;
+  DROP TABLE complete_project_assets;
+  ALTER TABLE complete_project_assets_new RENAME TO complete_project_assets;
+  COMMIT;
+*/
 db.exec(`
 CREATE TABLE IF NOT EXISTS complete_project_assets (
   project_id TEXT NOT NULL REFERENCES projects(project_id) ON DELETE CASCADE,
@@ -77,7 +90,7 @@ CREATE TABLE IF NOT EXISTS complete_project_assets (
   -- user-provided md5ext with file extension
   asset_md5ext TEXT NOT NULL,
 
-  PRIMARY KEY(project_id, asset_sha256)
+  PRIMARY KEY(project_id, asset_md5ext)
 ) STRICT;`);
 
 db.exec(`
@@ -308,7 +321,7 @@ const _deleteIncompleteAsset = db.prepare(`
   DELETE FROM incomplete_project_assets WHERE project_id=? AND asset_md5ext=?;
 `);
 const _createAsset = db.prepare(`
-  INSERT INTO assets (asset_sha256, data) VALUES (?, ?);
+  INSERT INTO assets (asset_sha256, data) VALUES (?, ?) ON CONFLICT DO NOTHING;
 `);
 export const finishIncompleteAsset = db.transaction((projectId: string, md5ext: string, data: Buffer): void => {
   const metadata = getIncompleteAssetMetadata(projectId, md5ext);
