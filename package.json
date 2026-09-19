@@ -25,7 +25,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prometheus-io/client": "^0.16.1",
 		"@turbowarp/jszip": "^3.11.1",
-		"better-sqlite3": "^11.5.0"
+		"better-sqlite3": "^13.0.3"
 	}
 }
