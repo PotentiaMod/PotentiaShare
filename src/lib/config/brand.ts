@@ -1,2 +1,2 @@
-export const APP_NAME = 'Placeholder';
+export const APP_NAME = 'PotentiaShare';
 export const CONTACT = '<edit this in brand.ts>';
