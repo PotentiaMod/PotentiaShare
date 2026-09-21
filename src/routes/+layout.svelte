@@ -69,7 +69,7 @@
   <div class="links">
     <a href="/">Home</a>
     <div class="link-gap" />
-    <a href="https://github.com/GarboMuffin/placeholder">GitHub</a>
+    <a href="https://github.com/PotentiaMod/PotentiaShare">GitHub</a>
     <div class="link-gap" />
     <a href="/privacy">Privacy</a>
     <div class="link-gap" />
