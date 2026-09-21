@@ -81,8 +81,8 @@
   <p>Yes.</p>
 
   <h2>Do custom extensions work?</h2>
-  <p>Most extensions on <a href="https://extensions.turbowarp.org/">extensions.turbowarp.org</a> will work.</p>
+  <p>Most extensions on <a href="https://potentiamod.github.io/extensions/">PotentiaMod Extension Bonanza</a> or <a href="https://potentiamod.github.io/pot-extensions/">PotentiaMod Extension Gallery</a> will work.</p>
 
   <h2>Where is the source code?</h2>
-  <p><a href="https://github.com/GarboMuffin/placeholder/">https://github.com/GarboMuffin/placeholder/</a></p>
+  <p><a href="https://github.com/PotentiaMod/PotentiaShare/">https://github.com/PotentiaMod/PotentiaShare</a></p>
 </section>
